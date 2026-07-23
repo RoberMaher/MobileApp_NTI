@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:verve/features/auth/widgets/custom_text_button.dart';
-import 'package:verve/features/auth/widgets/remember_me.dart';
+import 'package:verve/features/auth/widgets/custom_checkbox.dart';
 import 'package:verve/shared/custom_button.dart';
 import 'package:verve/shared/custom_text.dart';
 import 'package:verve/shared/custom_text_field.dart';
@@ -85,7 +85,8 @@ class _LoginViewState extends State<LoginView> {
                 isPassword: true,
               ),
               Gap(10.h),
-              RememberMe(
+              CustomCheckbox(
+                isForgotPassword: true,
                 value: widget.value,
                 onChanged: (newValue) {
                   setState(() {
@@ -95,6 +96,7 @@ class _LoginViewState extends State<LoginView> {
                 onForgot: () {
                   // Handle forgot password action
                 },
+                text: 'Remember Me',
               ),
               Gap(20.h),
               CustomButton(onTap: () {}, text: "Sign In"),
