@@ -4,6 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:verve/core/constants/app_colors.dart';
+import 'package:verve/features/auth/views/register_view.dart';
 import 'package:verve/features/auth/widgets/custom_text_button.dart';
 import 'package:verve/features/auth/widgets/custom_checkbox.dart';
 import 'package:verve/shared/custom_button.dart';
@@ -99,7 +101,11 @@ class _LoginViewState extends State<LoginView> {
                 text: 'Remember Me',
               ),
               Gap(20.h),
-              CustomButton(onTap: () {}, text: "Sign In"),
+              CustomButton(
+                onTap: () {},
+                text: "Sign In",
+                color: AppColors.primaryColor,
+              ),
               Gap(20.h),
               Divider(color: Colors.grey.shade300),
               Gap(20.h),
@@ -109,7 +115,13 @@ class _LoginViewState extends State<LoginView> {
                 weight: FontWeight.w600,
               ),
               Gap(16.h),
-              CustomButton(onTap: () {}, text: "Register", color: Colors.white),
+              CustomButton(
+                onTap: () {
+                  Navigator.pushNamed(context, RegisterView.routeName);
+                },
+                text: "Register",
+                color: Colors.white,
+              ),
             ],
           ),
         ),
