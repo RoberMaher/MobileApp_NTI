@@ -76,69 +76,71 @@ class _RegisterViewState extends State<RegisterView> {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Gap(10.h),
-              Text(
-                'I’m new here',
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: firstNameController,
-                hint: 'First Name',
-                label: 'First Name',
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: lastNameController,
-                hint: 'Last Name',
-                label: 'Last Name',
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: emailController,
-                hint: 'Email Address',
-                label: 'Email Address',
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: placeholderController,
-                hint: 'Placeholder',
-                label: 'Date of Birth',
-                isDate: true,
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: passwordController,
-                hint: 'Password (6-12 characters)',
-                label: 'Password',
-                isPassword: true,
-              ),
-              Gap(10.h),
-              Divider(color: Colors.grey.shade300),
-              Gap(10.h),
-              CustomCheckbox(
-                value: widget.value,
-                onChanged: (newValue) {
-                  setState(() {
-                    widget.value = newValue;
-                  });
-                },
-                text:
-                    'Yes, keep me informed via email about the latest trends and special offers. (not mandatory)',
-              ),
-              Gap(20.h),
-              CustomButton(
-                onTap: widget.value ? () {} : null,
-                text: "Register",
-                color: AppColors.primaryColor,
-              ),
-              Spacer(),
-              TermsAndPrivacyText(),
-              Gap(20.h),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Gap(10.h),
+                Text(
+                  'I’m new here',
+                  style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: firstNameController,
+                  hint: 'First Name',
+                  label: 'First Name',
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: lastNameController,
+                  hint: 'Last Name',
+                  label: 'Last Name',
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: emailController,
+                  hint: 'Email Address',
+                  label: 'Email Address',
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: placeholderController,
+                  hint: 'Placeholder',
+                  label: 'Date of Birth',
+                  isDate: true,
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: passwordController,
+                  hint: 'Password (6-12 characters)',
+                  label: 'Password',
+                  isPassword: true,
+                ),
+                Gap(10.h),
+                Divider(color: Colors.grey.shade300),
+                Gap(10.h),
+                CustomCheckbox(
+                  value: widget.value,
+                  onChanged: (newValue) {
+                    setState(() {
+                      widget.value = newValue;
+                    });
+                  },
+                  text:
+                      'Yes, keep me informed via email about the latest trends and special offers. (not mandatory)',
+                ),
+                Gap(20.h),
+                CustomButton(
+                  onTap: widget.value ? () {} : null,
+                  text: "Register",
+                  color: AppColors.primaryColor,
+                ),
+                Spacer(),
+                TermsAndPrivacyText(),
+                Gap(20.h),
+              ],
+            ),
           ),
         ),
       ),

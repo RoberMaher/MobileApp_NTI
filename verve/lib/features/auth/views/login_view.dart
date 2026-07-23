@@ -67,62 +67,64 @@ class _LoginViewState extends State<LoginView> {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Gap(10.h),
-              Text(
-                'Welcome Back',
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: emailController,
-                hint: 'Enter your email',
-              ),
-              Gap(16.h),
-              CustomTextField(
-                controller: passwordController,
-                hint: 'Enter your password',
-                isPassword: true,
-              ),
-              Gap(10.h),
-              CustomCheckbox(
-                isForgotPassword: true,
-                value: widget.value,
-                onChanged: (newValue) {
-                  setState(() {
-                    widget.value = newValue;
-                  });
-                },
-                onForgot: () {
-                  // Handle forgot password action
-                },
-                text: 'Remember Me',
-              ),
-              Gap(20.h),
-              CustomButton(
-                onTap: () {},
-                text: "Sign In",
-                color: AppColors.primaryColor,
-              ),
-              Gap(20.h),
-              Divider(color: Colors.grey.shade300),
-              Gap(20.h),
-              CustomText(
-                text: "New to Verve?",
-                size: 20.sp,
-                weight: FontWeight.w600,
-              ),
-              Gap(16.h),
-              CustomButton(
-                onTap: () {
-                  Navigator.pushNamed(context, RegisterView.routeName);
-                },
-                text: "Register",
-                color: Colors.white,
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Gap(10.h),
+                Text(
+                  'Welcome Back',
+                  style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: emailController,
+                  hint: 'Enter your email',
+                ),
+                Gap(16.h),
+                CustomTextField(
+                  controller: passwordController,
+                  hint: 'Enter your password',
+                  isPassword: true,
+                ),
+                Gap(10.h),
+                CustomCheckbox(
+                  isForgotPassword: true,
+                  value: widget.value,
+                  onChanged: (newValue) {
+                    setState(() {
+                      widget.value = newValue;
+                    });
+                  },
+                  onForgot: () {
+                    // Handle forgot password action
+                  },
+                  text: 'Remember Me',
+                ),
+                Gap(20.h),
+                CustomButton(
+                  onTap: () {},
+                  text: "Sign In",
+                  color: AppColors.primaryColor,
+                ),
+                Gap(20.h),
+                Divider(color: Colors.grey.shade300),
+                Gap(20.h),
+                CustomText(
+                  text: "New to Verve?",
+                  size: 20.sp,
+                  weight: FontWeight.w600,
+                ),
+                Gap(16.h),
+                CustomButton(
+                  onTap: () {
+                    Navigator.pushNamed(context, RegisterView.routeName);
+                  },
+                  text: "Register",
+                  color: Colors.white,
+                ),
+              ],
+            ),
           ),
         ),
       ),
