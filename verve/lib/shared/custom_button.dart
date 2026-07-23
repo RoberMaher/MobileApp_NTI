@@ -5,15 +5,15 @@ import 'package:verve/core/constants/app_colors.dart';
 import 'package:verve/shared/custom_text.dart';
 
 class CustomButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String text;
-  final Color? color;
+  final Color color;
 
   const CustomButton({
     super.key,
     required this.onTap,
     required this.text,
-    this.color,
+    required this.color,
   });
 
   @override
@@ -28,14 +28,16 @@ class CustomButton extends StatelessWidget {
               ? Border.all(color: AppColors.primaryColor)
               : null,
           borderRadius: BorderRadius.circular(100.r),
-          color: color ?? AppColors.primaryColor,
+          color: onTap != null ? color : Colors.grey.shade300,
         ),
         width: double.infinity,
         child: Center(
           child: CustomText(
             text: text,
             size: 16.sp,
-            color:color == Colors.white ? AppColors.primaryColor : Colors.white,
+            color: color == Colors.white
+                ? AppColors.primaryColor
+                : Colors.white,
             weight: FontWeight.w800,
           ),
         ),
