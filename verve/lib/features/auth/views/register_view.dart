@@ -83,7 +83,10 @@ class _RegisterViewState extends State<RegisterView> {
                 Gap(10.h),
                 Text(
                   'I’m new here',
-                  style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Gap(16.h),
                 CustomTextField(
@@ -136,9 +139,8 @@ class _RegisterViewState extends State<RegisterView> {
                   text: "Register",
                   color: AppColors.primaryColor,
                 ),
-                Spacer(),
+                Gap(160.h),
                 TermsAndPrivacyText(),
-                Gap(20.h),
               ],
             ),
           ),
