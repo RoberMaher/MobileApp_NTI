@@ -8,12 +8,14 @@ class CustomButton extends StatelessWidget {
   final VoidCallback? onTap;
   final String text;
   final Color color;
+  final double? fontsize;
 
   const CustomButton({
     super.key,
     required this.onTap,
     required this.text,
     required this.color,
+    this.fontsize,
   });
 
   @override
@@ -34,7 +36,7 @@ class CustomButton extends StatelessWidget {
         child: Center(
           child: CustomText(
             text: text,
-            size: 16.sp,
+            size: fontsize ?? 16.sp,
             color: color == Colors.white
                 ? AppColors.primaryColor
                 : Colors.white,
