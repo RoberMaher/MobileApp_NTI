@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:verve/bottom_navigation_bar.dart';
 import 'package:verve/core/constants/app_colors.dart';
 import 'package:verve/features/auth/views/register_view.dart';
 import 'package:verve/features/auth/widgets/custom_text_button.dart';
@@ -74,7 +75,10 @@ class _LoginViewState extends State<LoginView> {
                 Gap(10.h),
                 Text(
                   'Welcome Back',
-                  style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Gap(16.h),
                 CustomTextField(
@@ -103,7 +107,9 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 Gap(20.h),
                 CustomButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, BottomNavBar.routeName);
+                  },
                   text: "Sign In",
                   color: AppColors.primaryColor,
                 ),
