@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:verve/bottom_navigation_bar.dart';
 import 'package:verve/core/constants/app_colors.dart';
 import 'package:verve/features/auth/views/register_view.dart';
+import 'package:verve/features/auth/widgets/custom_app_bar.dart';
 import 'package:verve/features/auth/widgets/custom_text_button.dart';
 import 'package:verve/features/auth/widgets/custom_checkbox.dart';
 import 'package:verve/shared/custom_button.dart';
@@ -50,23 +51,7 @@ class _LoginViewState extends State<LoginView> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Row(
-            children: [
-              Image.asset('assets/images/logo.png', height: 64.h, width: 200.w),
-              Spacer(),
-              CustomTextButton(
-                text: 'Select Country',
-                ontap: () {
-                  // Navigate to the sign-up page
-                },
-              ),
-              Gap(5.w),
-              Icon(Icons.language),
-            ],
-          ),
-        ),
+        appBar: CustomAppBar(),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
