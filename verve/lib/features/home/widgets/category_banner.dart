@@ -1,12 +1,21 @@
-// features/home/widgets/sports_banner.dart
+// features/home/widgets/category_banner.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:verve/core/constants/app_colors.dart';
 import 'package:verve/shared/custom_text.dart';
 
-class SportsBanner extends StatelessWidget {
-  const SportsBanner({super.key});
+class CategoryBanner extends StatelessWidget {
+  final String title;
+  final String imageUrl;
+  final String subtitle;
+  final Color backgroundColor;
+  const CategoryBanner({
+    super.key,
+    required this.title,
+    required this.imageUrl,
+    required this.subtitle,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,7 @@ class SportsBanner extends StatelessWidget {
           width: double.infinity,
           height: 361.h,
           decoration: BoxDecoration(
-            color: AppColors.primaryColor,
+            color: backgroundColor,
             borderRadius: BorderRadius.circular(20.r),
           ),
         ),
@@ -28,17 +37,13 @@ class SportsBanner extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: 'Sports',
+                text: title,
                 color: Colors.white,
                 size: 28.sp,
                 weight: FontWeight.bold,
               ),
               Gap(8.h),
-              CustomText(
-                text: 'Get In Shape',
-                color: Colors.white,
-                size: 17.sp,
-              ),
+              CustomText(text: subtitle, color: Colors.white, size: 17.sp),
             ],
           ),
         ),
@@ -49,7 +54,7 @@ class SportsBanner extends StatelessWidget {
           right: 57.w,
           bottom: 10.h,
           child: Image.asset(
-            'assets/images/sports.png',
+            imageUrl,
             width: 220.w,
             height: 250.h,
             fit: BoxFit.cover,
