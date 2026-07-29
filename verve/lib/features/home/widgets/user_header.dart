@@ -1,6 +1,7 @@
 // features/home/widgets/user_header.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:verve/core/constants/app_colors.dart';
 
 class UserHeader extends StatelessWidget {
   const UserHeader({super.key});
@@ -9,7 +10,13 @@ class UserHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset('assets/images/logo.png', height: 16.h),
+        SvgPicture.asset(
+          'assets/images/logo.svg',
+          colorFilter: ColorFilter.mode(
+            AppColors.primaryColor,
+            BlendMode.srcIn,
+          ),
+        ),
         Spacer(),
         IconButton(
           icon: const Icon(Icons.search),
