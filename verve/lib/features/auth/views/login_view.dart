@@ -15,7 +15,7 @@ import 'package:verve/shared/custom_text_field.dart';
 
 class LoginView extends StatefulWidget {
   static const String routeName = '/login';
-  bool value = false;
+  bool isRememberMe = false;
 
   LoginView({super.key});
 
@@ -48,6 +48,7 @@ class _LoginViewState extends State<LoginView> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -66,68 +67,91 @@ class _LoginViewState extends State<LoginView> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: SingleChildScrollView(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Gap(10.h),
-                Text(
-                  'Welcome Back',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Gap(10.h),
+                        Text(
+                          'Welcome Back',
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Gap(16.h),
+                        CustomTextField(
+                          controller: emailController,
+                          hint: 'Enter your email',
+                        ),
+                        Gap(16.h),
+                        CustomTextField(
+                          controller: passwordController,
+                          hint: 'Enter your password',
+                          isPassword: true,
+                        ),
+                        Gap(10.h),
+                        CustomCheckbox(
+                          isForgotPassword: true,
+                          value: widget.isRememberMe,
+                          onChanged: (newValue) {
+                            setState(() {
+                              widget.isRememberMe = newValue;
+                            });
+                          },
+                          onForgot: () {},
+                          text: 'Remember Me',
+                        ),
+                        Gap(20.h),
+                        CustomButton(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              BottomNavBar.routeName,
+                            );
+                          },
+                          text: "Sign In",
+                          color: AppColors.primaryColor,
+                        ),
+                        Gap(20.h),
+                        Divider(color: Colors.grey.shade300),
+                        Gap(20.h),
+                        CustomText(
+                          text: "New to Verve?",
+                          size: 20.sp,
+                          weight: FontWeight.w600,
+                        ),
+                        Gap(16.h),
+                        CustomButton(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              RegisterView.routeName,
+                            );
+                          },
+                          text: "Register",
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Gap(16.h),
-                CustomTextField(
-                  controller: emailController,
-                  hint: 'Enter your email',
-                ),
-                Gap(16.h),
-                CustomTextField(
-                  controller: passwordController,
-                  hint: 'Enter your password',
-                  isPassword: true,
-                ),
-                Gap(10.h),
-                CustomCheckbox(
-                  isForgotPassword: true,
-                  value: widget.value,
-                  onChanged: (newValue) {
-                    setState(() {
-                      widget.value = newValue;
-                    });
-                  },
-                  onForgot: () {
-                    // Handle forgot password action
-                  },
-                  text: 'Remember Me',
-                ),
-                Gap(20.h),
-                CustomButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, BottomNavBar.routeName);
-                  },
-                  text: "Sign In",
-                  color: AppColors.primaryColor,
-                ),
-                Gap(20.h),
-                Divider(color: Colors.grey.shade300),
-                Gap(20.h),
-                CustomText(
-                  text: "New to Verve?",
-                  size: 20.sp,
-                  weight: FontWeight.w600,
-                ),
-                Gap(16.h),
-                CustomButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, RegisterView.routeName);
-                  },
-                  text: "Register",
-                  color: Colors.white,
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 10.w,
+                  children: [
+                    CustomTextButton(text: "Terms of Use", ontap: () {}),
+                    CustomText(text: "&"),
+                    CustomTextButton(text: "Privacy Policy", ontap: () {}),
+                  ],
                 ),
               ],
             ),
