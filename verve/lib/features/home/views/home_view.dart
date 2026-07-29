@@ -5,10 +5,11 @@ import 'package:gap/gap.dart';
 import 'package:verve/core/constants/app_colors.dart';
 import 'package:verve/features/home/widgets/categories.dart';
 import 'package:verve/features/home/widgets/product_card.dart';
+import 'package:verve/features/home/widgets/sale_banner.dart';
 import 'package:verve/features/home/widgets/section_title.dart';
+import 'package:verve/features/home/widgets/sports_banner.dart';
 import 'package:verve/features/home/widgets/user_header.dart';
 import 'package:verve/shared/custom_button.dart';
-import 'package:verve/shared/custom_text.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -140,43 +141,28 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               Gap(42.h),
-              Stack(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 200.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.r),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/banner2.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Positioned(
-                      top: 62.h,
-                    
-                      child: Column(
-                        children: [
-                          CustomText(
-                            text: 'Winter Sale',
-                            size: 28.sp,
-                            weight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          Gap(8.h),
-                          CustomText(
-                            text:
-                                'Stay cozy with up to 40% off winter clothing and accessories',
-                            size: 13.sp,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              SaleBanner(),
+              Gap(42.h),
+              SportsBanner(),
+              Gap(16.h),
+              SizedBox(
+                height: 320.h,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  separatorBuilder: (context, index) => Gap(16.w),
+                  itemBuilder: (context, index) {
+                    return ProductCard(
+                      image: 'assets/images/nikeshoe.png',
+                      title: 'Nike Air Max 270',
+                      brand: 'Nike',
+                      price: 150,
+                      discount: 20,
+                      isNew: true,
+                      isExclusive: true,
+                    );
+                  },
+                ),
               ),
               Gap(200.h),
             ],
