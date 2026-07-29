@@ -4,9 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String text;
+  final Color? color;
   final void Function() ontap;
 
-  const CustomTextButton({super.key, required this.text, required this.ontap});
+  const CustomTextButton({
+    super.key,
+    required this.text,
+    this.color = Colors.blue,
+    required this.ontap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class CustomTextButton extends StatelessWidget {
       onTap: ontap,
       child: Text(
         text,
-        style: TextStyle(fontSize: 12.sp, color: Colors.blue),
+        style: TextStyle(fontSize: 12.sp, color: color),
       ),
     );
   }
