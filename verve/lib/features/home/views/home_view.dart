@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:verve/core/constants/app_colors.dart';
+import 'package:verve/features/auth/widgets/custom_text_button.dart';
 import 'package:verve/features/home/widgets/categories.dart';
 import 'package:verve/features/home/widgets/product_card.dart';
 import 'package:verve/features/home/widgets/sale_banner.dart';
 import 'package:verve/features/home/widgets/section_title.dart';
-import 'package:verve/features/home/widgets/sports_banner.dart';
+import 'package:verve/features/home/widgets/category_banner.dart';
 import 'package:verve/features/home/widgets/user_header.dart';
 import 'package:verve/shared/custom_button.dart';
+import 'package:verve/shared/custom_text.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -26,12 +28,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: UserHeader(),
-      ),
+      appBar: AppBar(automaticallyImplyLeading: false, title: UserHeader()),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -143,7 +140,12 @@ class _HomeViewState extends State<HomeView> {
               Gap(42.h),
               SaleBanner(),
               Gap(42.h),
-              SportsBanner(),
+              CategoryBanner(
+                title: 'Sports',
+                imageUrl: 'assets/images/sports.png',
+                subtitle: 'Get In Shape',
+                backgroundColor: AppColors.primaryColor,
+              ),
               Gap(16.h),
               SizedBox(
                 height: 320.h,
@@ -153,7 +155,7 @@ class _HomeViewState extends State<HomeView> {
                   separatorBuilder: (context, index) => Gap(16.w),
                   itemBuilder: (context, index) {
                     return ProductCard(
-                      image: 'assets/images/nikeshoe.png',
+                      image: 'assets/images/Inspirational1.png',
                       title: 'Nike Air Max 270',
                       brand: 'Nike',
                       price: 150,
@@ -164,7 +166,136 @@ class _HomeViewState extends State<HomeView> {
                   },
                 ),
               ),
-              Gap(200.h),
+              Gap(20.h),
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 730.h,
+                    color: Color(0xFF3634A3),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 24.h,
+                      left: 16.w,
+                      right: 16.w,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GridView.builder(
+                          itemCount: 4,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 16.w,
+                                mainAxisSpacing: 16.h,
+                                childAspectRatio: 0.5,
+                              ),
+                          itemBuilder: (context, index) {
+                            return Image.asset(
+                              'assets/images/Inspirational1.png',
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ),
+                        Gap(16.h),
+                        Row(
+                          children: [
+                            CustomText(
+                              text: 'Inspirational',
+                              color: Colors.white,
+                              size: 20.sp,
+                              weight: FontWeight.bold,
+                            ),
+                            Spacer(),
+                            CustomTextButton(
+                              text: 'See All',
+                              ontap: () {},
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Gap(20.h),
+              SectionTitle(title: 'Jackets'),
+              Gap(16.h),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: 8,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16.w,
+                  mainAxisSpacing: 16.h,
+                  childAspectRatio: 0.5,
+                ),
+                itemBuilder: (context, index) {
+                  return ProductCard(
+                    image: 'assets/images/Inspirational1.png',
+                    title: 'Nike Air Max 270',
+                    brand: 'Nike',
+                    price: 150,
+                    discount: 20,
+                  );
+                },
+              ),
+              Gap(20.h),
+              CategoryBanner(
+                title: 'Outdoors',
+                imageUrl: 'assets/images/outdoors.png',
+                subtitle: 'Gear up for your next adventure',
+                backgroundColor: Color(0xFF1C4D1B),
+              ),
+              Gap(20.h),
+              SizedBox(
+                height: 320.h,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  separatorBuilder: (context, index) => Gap(16.w),
+                  itemBuilder: (context, index) {
+                    return ProductCard(
+                      image: 'assets/images/Inspirational1.png',
+                      title: 'Nike Air Max 270',
+                      brand: 'Nike',
+                      price: 150,
+                      discount: 20,
+                      isNew: true,
+                      isExclusive: true,
+                    );
+                  },
+                ),
+              ),
+              Gap(20.h),
+              SectionTitle(title: 'For You'),
+              Gap(16.h),
+              SizedBox(
+                height: 320.h,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  separatorBuilder: (context, index) => Gap(16.w),
+                  itemBuilder: (context, index) {
+                    return ProductCard(
+                      image: 'assets/images/glasses.png',
+                      title: 'Nike Air Max 270',
+                      brand: 'Nike',
+                      price: 150,
+                      discount: 20,
+                      isNew: true,
+                      isExclusive: true,
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
