@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:verve/shared/custom_text.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final String image;
   final String title;
   final String brand;
@@ -27,6 +27,13 @@ class ProductCard extends StatelessWidget {
   });
 
   @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  bool isFav = false;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,14 +47,14 @@ class ProductCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
                 image: DecorationImage(
-                  image: AssetImage(image),
+                  image: AssetImage(widget.image),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
 
             /// Discount
-            if (discount != null)
+            if (widget.discount != null)
               Positioned(top: 10, left: 10, child: _discountBadge()),
 
             /// Favorite
@@ -59,8 +66,8 @@ class ProductCard extends StatelessWidget {
               left: 10,
               child: Row(
                 children: [
-                  if (isNew) _tag('New'),
-                  if (isExclusive) ...[Gap(6.w), _tag('Exclusive')],
+                  if (widget.isNew) _tag('New'),
+                  if (widget.isExclusive) ...[Gap(6.w), _tag('Exclusive')],
                 ],
               ),
             ),
@@ -70,48 +77,47 @@ class ProductCard extends StatelessWidget {
         Gap(8.h),
 
         /// Brand
-        CustomText(text: brand, color: Colors.grey),
+        CustomText(text: widget.brand, color: Colors.grey),
 
         Gap(4.h),
 
         /// Title
-        CustomText(text: title, weight: FontWeight.w400, size: 17.sp),
+        CustomText(text: widget.title, weight: FontWeight.w400, size: 17.sp),
 
         Gap(6.h),
 
         /// Price
         Row(
           children: [
-            if (oldPrice != null) ...[
+            if (widget.oldPrice != null) ...[
               Text(
-                '\$$oldPrice',
-                style: TextStyle(
+                '\$${widget.oldPrice}',
+                style: const TextStyle(
                   decoration: TextDecoration.lineThrough,
                   color: Colors.grey,
                 ),
               ),
               Gap(6.w),
               CustomText(
-                text: '\$$price',
+                text: '\$${widget.price}',
                 weight: FontWeight.bold,
                 size: 17.sp,
                 color: Colors.red,
               ),
             ],
-            if (oldPrice == null) ...[
+            if (widget.oldPrice == null)
               CustomText(
-                text: '\$$price',
+                text: '\$${widget.price}',
                 weight: FontWeight.bold,
                 size: 17.sp,
               ),
-            ],
           ],
         ),
       ],
     );
   }
 
-  /// Discount
+  /// Discount Badge
   Widget _discountBadge() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
@@ -120,7 +126,7 @@ class ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(6.r),
       ),
       child: CustomText(
-        text: '-$discount%',
+        text: '-${widget.discount}%',
         color: Colors.white,
         weight: FontWeight.bold,
         size: 11.sp,
@@ -128,15 +134,26 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  /// Fav
+  /// Favorite Icon
   Widget _favIcon() {
-    return Container(
-      padding: EdgeInsets.all(6.r),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isFav = !isFav;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.all(6.r),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          isFav ? Icons.favorite : Icons.favorite_border,
+          color: isFav ? Colors.red : Colors.black,
+          size: 18.sp,
+        ),
       ),
-      child: Icon(Icons.favorite_border, size: 18.sp),
     );
   }
 
