@@ -5,7 +5,8 @@ import 'package:gap/gap.dart';
 import 'package:verve/core/constants/app_colors.dart';
 import 'package:verve/features/auth/widgets/custom_text_button.dart';
 import 'package:verve/features/home/widgets/categories.dart';
-import 'package:verve/features/home/widgets/product_card.dart';
+import 'package:verve/features/product/views/product_details.dart';
+import 'package:verve/shared/product_card.dart';
 import 'package:verve/features/home/widgets/sale_banner.dart';
 import 'package:verve/features/home/widgets/section_title.dart';
 import 'package:verve/features/home/widgets/category_banner.dart';
@@ -125,14 +126,24 @@ class _HomeViewState extends State<HomeView> {
                   itemCount: 10,
                   separatorBuilder: (context, index) => Gap(16.w),
                   itemBuilder: (context, index) {
-                    return ProductCard(
-                      image: 'assets/images/glasses.png',
-                      title: 'Nike Air Max 270',
-                      brand: 'Nike',
-                      price: 150,
-                      discount: 20,
-                      isNew: true,
-                      isExclusive: true,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProductDetailsView(),
+                          ),
+                        );
+                      },
+                      child: ProductCard(
+                        image: 'assets/images/glasses.png',
+                        title: 'Nike Air Max 270',
+                        brand: 'Nike',
+                        price: 150,
+                        discount: 20,
+                        isNew: true,
+                        isExclusive: true,
+                      ),
                     );
                   },
                 ),
