@@ -23,7 +23,7 @@ class ProductDetailsView extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined),
+            icon: const Icon(Icons.shopping_cart_outlined ),
             onPressed: () {},
           ),
         ],
